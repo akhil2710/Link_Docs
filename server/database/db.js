@@ -1,7 +1,11 @@
 import mongoose  from 'mongoose';
+import dotenv from 'dotenv';
 
-const Connection = async (username = 'akhil', password = 'akhil') => {
-    const URL = `mongodb+srv://${username}:${password}@cluster0.xrspalm.mongodb.net/?retryWrites=true&w=majority`;
+dotenv.config();
+
+
+const Connection = async () => {
+    const URL =  process.env.mongodb_URI ;
 
     try {
         await mongoose.connect(URL, { useUnifiedTopology: true, useNewUrlParser: true });
@@ -12,3 +16,4 @@ const Connection = async (username = 'akhil', password = 'akhil') => {
 }
 
 export default Connection;
+
